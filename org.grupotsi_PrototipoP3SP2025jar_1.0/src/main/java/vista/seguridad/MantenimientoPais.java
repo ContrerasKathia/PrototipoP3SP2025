@@ -6,9 +6,9 @@
 package vista.seguridad;
 
 //import datos.EmpleadoDAO;
-import Modelo.seguridad.PerfilDAO;
+import Modelo.seguridad.PaisDAO;
 //import domain.Empleado;
-import Controlador.seguridad.Entrenador;
+import Controlador.seguridad.Pais;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +20,7 @@ import Controlador.seguridad.UsuarioConectado;
  *
  * @author visitante
  */
-public class MantenimientoEntrenador extends javax.swing.JInternalFrame {
+public class MantenimientoPais extends javax.swing.JInternalFrame {
     
     final int APLICACION=201;
 
@@ -30,8 +30,8 @@ public class MantenimientoEntrenador extends javax.swing.JInternalFrame {
         modelo.addColumn("Nombre");
         modelo.addColumn("Estatus");
         
-        PerfilDAO perfilDAO = new PerfilDAO();
-        List<Entrenador> perfil = perfilDAO.select();
+        PaisDAO perfilDAO = new PaisDAO();
+        List<Pais> perfil = perfilDAO.select();
         
         tablaSedes.setModel(modelo);
         String[] dato = new String[3];
@@ -44,8 +44,8 @@ public class MantenimientoEntrenador extends javax.swing.JInternalFrame {
     }
 
     public void buscarPerfil() {
-        Entrenador perfilAConsultar = new Entrenador();
-        PerfilDAO perfilDAO = new PerfilDAO();
+        Pais perfilAConsultar = new Pais();
+        PaisDAO perfilDAO = new PaisDAO();
         perfilAConsultar.setId_perfil(Integer.parseInt(txtbuscado.getText()));
         perfilAConsultar = perfilDAO.query(perfilAConsultar);
         txtNombre.setText(perfilAConsultar.getNombre_perfil());
@@ -56,7 +56,7 @@ public class MantenimientoEntrenador extends javax.swing.JInternalFrame {
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(usuarioEnSesion.getIdUsuario(), APLICACION,  "Consulta Datos Perfiles");
     }
 
-    public MantenimientoEntrenador() {
+    public MantenimientoPais() {
         initComponents();
         llenadoDeTablas();
         //se quito el llena combos al no contar con empleados
@@ -314,8 +314,8 @@ public class MantenimientoEntrenador extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-       PerfilDAO perfilDAO = new PerfilDAO();
-        Entrenador perfilAEliminar = new Entrenador();
+       PaisDAO perfilDAO = new PaisDAO();
+        Pais perfilAEliminar = new Pais();
         perfilAEliminar.setId_perfil(Integer.parseInt(txtbuscado.getText()));
         perfilDAO.delete(perfilAEliminar);
         llenadoDeTablas();
@@ -326,8 +326,8 @@ public class MantenimientoEntrenador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        PerfilDAO perfilDAO = new PerfilDAO();
-        Entrenador perfilAInsertar = new Entrenador();
+        PaisDAO perfilDAO = new PaisDAO();
+        Pais perfilAInsertar = new Pais();
         perfilAInsertar.setId_perfil(Integer.parseInt(txtidPerfil.getText()));
         perfilAInsertar.setNombre_perfil(txtNombre.getText());
         perfilAInsertar.setEstatus_perfil(txtEstatus.getText());
@@ -346,8 +346,8 @@ public class MantenimientoEntrenador extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        PerfilDAO perfilDAO = new PerfilDAO();
-        Entrenador perfilAActualizar = new Entrenador();
+        PaisDAO perfilDAO = new PaisDAO();
+        Pais perfilAActualizar = new Pais();
         perfilAActualizar.setId_perfil(Integer.parseInt(txtbuscado.getText()));
         perfilAActualizar.setNombre_perfil(txtNombre.getText());
         perfilAActualizar.setEstatus_perfil(txtEstatus.getText());

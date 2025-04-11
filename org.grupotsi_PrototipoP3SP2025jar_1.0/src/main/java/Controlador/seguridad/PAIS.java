@@ -9,14 +9,18 @@ package Controlador.seguridad;
  *
  * @author visitante
  */
-public class Entrenador {
+public class Pais {
     
-    int id_perfil;
-    String nombre_perfil;
-    String estatus_perfil;
+    int id_entrenador;
+    String nombre1;
+    String nombre2;
+    String apellido1;
+    String apellido2;
+    String fecha_nacimiento;
+    
 
     
-    public Entrenador() {
+    public Pais() {
     }
    
 }

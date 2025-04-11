@@ -5,7 +5,7 @@
  */
 package Modelo.seguridad;
 
-import Controlador.seguridad.Entrenador; 
+import Controlador.seguridad.Pais; 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import Modelo.Conexion;
@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author visitante
  */
-public class PerfilDAO {
+public class PaisDAO {
 
     private static final String SQL_SELECT = "SELECT id_perfil, nombre_perfil, estatus_perfil FROM perfiles";
     private static final String SQL_INSERT = "INSERT INTO perfiles(id_perfil, nombre_perfil, estatus_perfil) VALUES(?, ?, ?)";
@@ -26,12 +26,12 @@ public class PerfilDAO {
     private static final String SQL_DELETE = "DELETE FROM perfiles WHERE id_perfil=?";
     private static final String SQL_QUERY = "SELECT id_perfil, nombre_perfil, estatus_perfil FROM perfiles WHERE id_perfil = ?";
 
-    public List<Entrenador> select() {
+    public List<Pais> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Entrenador perfil = null;
-        List<Entrenador> perfiles = new ArrayList<Entrenador>();
+        Pais perfil = null;
+        List<Pais> perfiles = new ArrayList<Pais>();
 
         try {
             conn = Conexion.getConnection();
@@ -42,7 +42,7 @@ public class PerfilDAO {
                 String nombrePerfil = rs.getString("nombre_perfil");
                 String estatusPerfil = rs.getString("estatus_perfil");
                 
-                perfil = new Entrenador();
+                perfil = new Pais();
                 perfil.setId_perfil(idPerfil);
                 perfil.setNombre_perfil(nombrePerfil);
                 perfil.setEstatus_perfil(estatusPerfil);
@@ -61,7 +61,7 @@ public class PerfilDAO {
         return perfiles;
     }
 
-    public int insert(Entrenador perfil) { 
+    public int insert(Pais perfil) { 
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -85,7 +85,7 @@ public class PerfilDAO {
         return rows;
     }
 
-    public int update(Entrenador perfil) {
+    public int update(Pais perfil) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -112,7 +112,7 @@ public class PerfilDAO {
         return rows;
     }
 
-    public int delete(Entrenador perfil) {
+    public int delete(Pais perfil) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -134,11 +134,11 @@ public class PerfilDAO {
         return rows;
     }
 
-    public Entrenador query(Entrenador perfil) {    
+    public Pais query(Pais perfil) {    
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Entrenador> perfiles = new ArrayList<Entrenador>();
+        List<Pais> perfiles = new ArrayList<Pais>();
         int rows = 0;
 
         try {
@@ -152,7 +152,7 @@ public class PerfilDAO {
                 String nombrePerfil = rs.getString("nombre_perfil");
                 String estatusPerfil = rs.getString("estatus_perfil");
                 
-                perfil = new Entrenador();
+                perfil = new Pais();
                 perfil.setId_perfil(idPerfil);
                 perfil.setNombre_perfil(nombrePerfil);
                 perfil.setEstatus_perfil(estatusPerfil);

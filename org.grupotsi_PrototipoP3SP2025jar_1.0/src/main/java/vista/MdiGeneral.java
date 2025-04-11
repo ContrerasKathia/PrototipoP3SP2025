@@ -13,7 +13,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import vista.seguridad.MantenimientoUsuario;
-import vista.seguridad.MantenimientoEntrenador;
+import vista.seguridad.MantenimientoPais;
 import vista.seguridad.MantenimientoBitacora;
 
 
@@ -176,7 +176,7 @@ public class MdiGeneral extends javax.swing.JFrame {
 for (javax.swing.JInternalFrame frame : jDesktopPane1.getAllFrames()) {
     frame.dispose(); // Cierra cada ventana abierta
 }
-        MantenimientoEntrenador ventana = new MantenimientoEntrenador();
+        MantenimientoPais ventana = new MantenimientoPais();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
