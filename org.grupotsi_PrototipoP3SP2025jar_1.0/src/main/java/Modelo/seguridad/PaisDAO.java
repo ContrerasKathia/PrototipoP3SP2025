@@ -20,34 +20,31 @@ import java.util.List;
  */
 public class PaisDAO {
 
-    private static final String SQL_SELECT = "SELECT id_perfil, nombre_perfil, estatus_perfil FROM perfiles";
-    private static final String SQL_INSERT = "INSERT INTO perfiles(id_perfil, nombre_perfil, estatus_perfil) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE perfiles SET nombre_perfil=?, estatus_perfil=? WHERE id_perfil = ?";
-    private static final String SQL_DELETE = "DELETE FROM perfiles WHERE id_perfil=?";
-    private static final String SQL_QUERY = "SELECT id_perfil, nombre_perfil, estatus_perfil FROM perfiles WHERE id_perfil = ?";
+    private static final String SQL_SELECT = "SELECT id_pais, nombre_pais FROM pais";
+    private static final String SQL_INSERT = "INSERT INTO perfiles(id_pais, nombre_pais) VALUES( ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE perfiles SET nombre_pais=? WHERE id_pais = ?";
+    private static final String SQL_DELETE = "DELETE FROM pais WHERE id_pais=?";
+    private static final String SQL_QUERY = "SELECT id_pais, nombre_pais FROM pais WHERE id_pais = ?";
 
     public List<Pais> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Pais perfil = null;
-        List<Pais> perfiles = new ArrayList<Pais>();
+        Pais pais = null;
+        List<Pais> paises = new ArrayList<Pais>();
 
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int idPerfil = rs.getInt("id_perfil");
-                String nombrePerfil = rs.getString("nombre_perfil");
-                String estatusPerfil = rs.getString("estatus_perfil");
+                int idPais = rs.getInt("id_pais");
+                String nombrePais = rs.getString("nombre_pais");
+                pais = new Pais();
+                pais.setId_pais(idPais);
+                pais.setNombre_pais(nombrePais);
                 
-                perfil = new Pais();
-                perfil.setId_perfil(idPerfil);
-                perfil.setNombre_perfil(nombrePerfil);
-                perfil.setEstatus_perfil(estatusPerfil);
-                
-                perfiles.add(perfil);
+                paises.add(pais);
             }
 
         } catch (SQLException ex) {
@@ -58,19 +55,18 @@ public class PaisDAO {
             Conexion.close(conn);
         }
 
-        return perfiles;
+        return paises;
     }
 
-    public int insert(Pais perfil) { 
+    public int insert(Pais pais) { 
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setInt(1, perfil.getId_perfil());
-            stmt.setString(2, perfil.getNombre_perfil());
-            stmt.setString(3, perfil.getEstatus_perfil());
+            stmt.setInt(1, pais.getId_pais());
+            stmt.setString(2, pais.getNombre_pais());
 
             System.out.println("ejecutando query: " + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -85,7 +81,7 @@ public class PaisDAO {
         return rows;
     }
 
-    public int update(Pais perfil) {
+    public int update(Pais pais) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -95,9 +91,7 @@ public class PaisDAO {
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
             
-            stmt.setString(1, perfil.getNombre_perfil());
-            stmt.setString(2, perfil.getEstatus_perfil());
-            stmt.setInt(3, perfil.getId_perfil());
+            stmt.setString(1, pais.getNombre_pais());
             
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado: " + rows);
@@ -112,7 +106,7 @@ public class PaisDAO {
         return rows;
     }
 
-    public int delete(Pais perfil) {
+    public int delete(Pais pais) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -121,7 +115,7 @@ public class PaisDAO {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query: " + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, perfil.getId_perfil());
+            stmt.setInt(1, pais.getId_pais());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados: " + rows);
         } catch (SQLException ex) {
@@ -134,29 +128,27 @@ public class PaisDAO {
         return rows;
     }
 
-    public Pais query(Pais perfil) {    
+    public Pais query(Pais pais) {    
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Pais> perfiles = new ArrayList<Pais>();
+        List<Pais> paises = new ArrayList<Pais>();
         int rows = 0;
 
         try {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query: " + SQL_QUERY);
             stmt = conn.prepareStatement(SQL_QUERY);
-            stmt.setInt(1, perfil.getId_perfil());
+            stmt.setInt(1, pais.getId_pais());
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int idPerfil = rs.getInt("id_perfil");
                 String nombrePerfil = rs.getString("nombre_perfil");
                 String estatusPerfil = rs.getString("estatus_perfil");
                 
-                perfil = new Pais();
-                perfil.setId_perfil(idPerfil);
-                perfil.setNombre_perfil(nombrePerfil);
-                perfil.setEstatus_perfil(estatusPerfil);
-
+                pais = new Pais();
+                pais.setId_pais(idPerfil);
+                pais.setNombre_pais(nombrePerfil);
             }
 
         } catch (SQLException ex) {
@@ -167,7 +159,7 @@ public class PaisDAO {
             Conexion.close(conn);
         }
 
-        return perfil; 
+        return pais; 
     }
         
 }

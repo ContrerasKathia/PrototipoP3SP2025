@@ -10,13 +10,36 @@ package Controlador.seguridad;
  * @author visitante
  */
 public class Pais {
+
+    public Pais(int id_pais, String nombre_pais) {
+        this.id_pais = id_pais;
+        this.nombre_pais = nombre_pais;
+    }
+
+    public int getId_pais() {
+        return id_pais;
+    }
+
+    public String getNombre_pais() {
+        return nombre_pais;
+    }
+
+    public void setId_pais(int id_pais) {
+        this.id_pais = id_pais;
+    }
+
+    public void setNombre_pais(String nombre_pais) {
+        this.nombre_pais = nombre_pais;
+    }
+
+    @Override
+    public String toString() {
+        return "Pais{" + "id_pais=" + id_pais + ", nombre_pais=" + nombre_pais + '}';
+    }
     
-    int id_entrenador;
-    String nombre1;
-    String nombre2;
-    String apellido1;
-    String apellido2;
-    String fecha_nacimiento;
+    int id_pais;
+    String nombre_pais;
+    
     
 
     

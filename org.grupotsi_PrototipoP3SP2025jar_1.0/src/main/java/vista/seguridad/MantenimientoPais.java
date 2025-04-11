@@ -26,34 +26,32 @@ public class MantenimientoPais extends javax.swing.JInternalFrame {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID Perfil");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Estatus");
-        
-        PaisDAO perfilDAO = new PaisDAO();
-        List<Pais> perfil = perfilDAO.select();
+        modelo.addColumn("id_pais");
+        modelo.addColumn("nombre_pais");
+  
+        PaisDAO paisDAO = new PaisDAO();
+        List<Pais> pais = paisDAO.select();
         
         tablaSedes.setModel(modelo);
         String[] dato = new String[3];
-        for (int i = 0; i < perfil.size(); i++) {
-            dato[0] = Integer.toString(perfil.get(i).getId_perfil());
-            dato[1] = perfil.get(i).getNombre_perfil();
-            dato[2] = perfil.get(i).getEstatus_perfil();
+        for (int i = 0; i < pais.size(); i++) {
+            dato[0] = Integer.toString(pais.get(i).getId_pais());
+            dato[1] = pais.get(i).getNombre_pais();
+       
             modelo.addRow(dato);
         }
     }
 
     public void buscarPerfil() {
-        Pais perfilAConsultar = new Pais();
-        PaisDAO perfilDAO = new PaisDAO();
-        perfilAConsultar.setId_perfil(Integer.parseInt(txtbuscado.getText()));
-        perfilAConsultar = perfilDAO.query(perfilAConsultar);
-        txtNombre.setText(perfilAConsultar.getNombre_perfil());
-        txtEstatus.setText(perfilAConsultar.getEstatus_perfil());
+        Pais paisAConsultar = new Pais();
+        PaisDAO paisDAO = new PaisDAO();
+        paisAConsultar.setId_pais(Integer.parseInt(txtbuscado.getText()));
+        paisAConsultar = paisDAO.query(paisAConsultar);
+        txtNombre.setText(paisAConsultar.getNombre_pais());
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
         int resultadoBitacora=0;
         Bitacora bitacoraRegistro = new Bitacora();
-        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(usuarioEnSesion.getIdUsuario(), APLICACION,  "Consulta Datos Perfiles");
+        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(usuarioEnSesion.getIdUsuario(), APLICACION,  "Consulta Datos Paises");
     }
 
     public MantenimientoPais() {
@@ -314,28 +312,28 @@ public class MantenimientoPais extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-       PaisDAO perfilDAO = new PaisDAO();
-        Pais perfilAEliminar = new Pais();
-        perfilAEliminar.setId_perfil(Integer.parseInt(txtbuscado.getText()));
-        perfilDAO.delete(perfilAEliminar);
+       PaisDAO paisDAO = new PaisDAO();
+        Pais paisAEliminar = new Pais();
+        paisAEliminar.setId_pais(Integer.parseInt(txtbuscado.getText()));
+        paisDAO.delete(paisAEliminar);
         llenadoDeTablas();
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
         int resultadoBitacora=0;
         Bitacora bitacoraRegistro = new Bitacora();
-        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(usuarioEnSesion.getIdUsuario(), APLICACION,  "Borrar Datos Perfiles");
+        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(usuarioEnSesion.getIdUsuario(), APLICACION,  "Borrar Datos Paises");
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        PaisDAO perfilDAO = new PaisDAO();
-        Pais perfilAInsertar = new Pais();
-        perfilAInsertar.setId_perfil(Integer.parseInt(txtidPerfil.getText()));
-        perfilAInsertar.setNombre_perfil(txtNombre.getText());
-        perfilAInsertar.setEstatus_perfil(txtEstatus.getText());
-        perfilDAO.insert(perfilAInsertar);
+        PaisDAO paisDAO = new PaisDAO();
+        Pais paisAInsertar = new Pais();
+        paisAInsertar.setId_pais(Integer.parseInt(txtidPerfil.getText()));
+        paisAInsertar.setNombre_pais(txtNombre.getText());
+        
+        paisDAO.insert(paisAInsertar);
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
         int resultadoBitacora=0;
         Bitacora bitacoraRegistro = new Bitacora();
-        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(usuarioEnSesion.getIdUsuario(), APLICACION,  "Ingreso Datos Perfiles");
+        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(usuarioEnSesion.getIdUsuario(), APLICACION,  "Ingreso Datos Paises");
         llenadoDeTablas();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -346,17 +344,17 @@ public class MantenimientoPais extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        PaisDAO perfilDAO = new PaisDAO();
-        Pais perfilAActualizar = new Pais();
-        perfilAActualizar.setId_perfil(Integer.parseInt(txtbuscado.getText()));
-        perfilAActualizar.setNombre_perfil(txtNombre.getText());
-        perfilAActualizar.setEstatus_perfil(txtEstatus.getText());
-        perfilDAO.update(perfilAActualizar);
+        PaisDAO paisDAO = new PaisDAO();
+        Pais paisAActualizar = new Pais();
+        paisAActualizar.setId_pais(Integer.parseInt(txtbuscado.getText()));
+        paisAActualizar.setNombre_pais(txtNombre.getText());
+        
+        paisDAO.update(paisAActualizar);
         llenadoDeTablas();
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
         int resultadoBitacora=0;
         Bitacora bitacoraRegistro = new Bitacora();
-        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(usuarioEnSesion.getIdUsuario(), APLICACION,  "Actualizacion Datos Perfiles");
+        resultadoBitacora = bitacoraRegistro.setIngresarBitacora(usuarioEnSesion.getIdUsuario(), APLICACION,  "Actualizacion Datos Paises");
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
