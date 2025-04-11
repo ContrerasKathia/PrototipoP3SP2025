@@ -34,7 +34,7 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="MantenimientoAplicaciones">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Mantenimiento Entrenador"/>
+                    <Property name="text" type="java.lang.String" value="Mantenimiento Paises"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MantenimientoAplicacionesActionPerformed"/>

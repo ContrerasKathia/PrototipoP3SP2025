@@ -21,8 +21,8 @@ import java.util.List;
 public class PaisDAO {
 
     private static final String SQL_SELECT = "SELECT id_pais, nombre_pais FROM pais";
-    private static final String SQL_INSERT = "INSERT INTO perfiles(id_pais, nombre_pais) VALUES( ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE perfiles SET nombre_pais=? WHERE id_pais = ?";
+    private static final String SQL_INSERT = "INSERT INTO pais(id_pais, nombre_pais) VALUES( ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE pais SET nombre_pais=? WHERE id_pais = ?";
     private static final String SQL_DELETE = "DELETE FROM pais WHERE id_pais=?";
     private static final String SQL_QUERY = "SELECT id_pais, nombre_pais FROM pais WHERE id_pais = ?";
 
@@ -142,13 +142,13 @@ public class PaisDAO {
             stmt.setInt(1, pais.getId_pais());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int idPerfil = rs.getInt("id_perfil");
-                String nombrePerfil = rs.getString("nombre_perfil");
-                String estatusPerfil = rs.getString("estatus_perfil");
+                int idPais = rs.getInt("id_pais");
+                String nombrePais = rs.getString("nombre_pais");
+                
                 
                 pais = new Pais();
-                pais.setId_pais(idPerfil);
-                pais.setNombre_pais(nombrePerfil);
+                pais.setId_pais(idPais);
+                pais.setNombre_pais(nombrePais);
             }
 
         } catch (SQLException ex) {

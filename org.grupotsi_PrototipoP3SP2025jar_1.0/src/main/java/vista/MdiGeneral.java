@@ -86,7 +86,7 @@ public class MdiGeneral extends javax.swing.JFrame {
             }
         });
 
-        MantenimientoAplicaciones.setText("Mantenimiento Entrenador");
+        MantenimientoAplicaciones.setText("Mantenimiento Paises");
         MantenimientoAplicaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MantenimientoAplicacionesActionPerformed(evt);
